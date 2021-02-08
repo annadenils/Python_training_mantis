@@ -6,17 +6,18 @@ class SessionHelper:
     def login(self, login_name, password):
         wd = self.app.wd
         self.app.open_home_page()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys(login_name)
-        wd.find_element_by_name("pass").click()
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys(password)
-        wd.find_element_by_xpath("//input[@value='Login']").click()
+        wd.find_element_by_name("username").click()
+        wd.find_element_by_name("username").clear()
+        wd.find_element_by_name("username").send_keys(login_name)
+        wd.find_element_by_name("password").click()
+        wd.find_element_by_name("password").clear()
+        wd.find_element_by_name("password").send_keys(password)
+        wd.find_element_by_css_selector("input[type='submit']").click()
 
     def logout(self):
         wd = self.app.wd
         wd.find_element_by_link_text("Logout").click()
-        wd.find_element_by_name("user")
+        wd.find_element_by_name("username")
 
     def ensure_logout(self):
         if self.is_logged_in():
@@ -31,7 +32,7 @@ class SessionHelper:
 
     def get_logged_user(self):
         wd = self.app.wd
-        return wd.find_element_by_xpath("/html/body/div/div[1]/form/b").text[1:-1]
+        return wd.find_element_by_css_selector("td.login-info-left span").text
 
     def ensure_login(self, login_name, password):
         if self.is_logged_in():

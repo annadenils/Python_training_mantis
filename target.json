@@ -1,19 +1,9 @@
 {
   "web": {
-    "baseUrl": "http://127.0.0.1/addressbook/index.php",
-    "login_name": "admin",
-    "password": "secret"
+    "baseUrl": "http://localhost/mantisbt-1.2.20/"
   },
-  "db": {
-    "host": "localhost",
-    "name": "addressbook",
-    "user": "root",
-    "password": ""
-  },
-  "orm": {
-    "host": "127.0.0.1",
-    "name": "addressbook",
-    "user": "root",
-    "password": ""
+  "webadmin": {
+    "login_name": "administrator",
+    "password": "root"
   }
 }

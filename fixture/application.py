@@ -1,7 +1,6 @@
 from selenium import webdriver
 from fixture.session import SessionHelper
-from fixture.user import UserHelper
-from fixture.group import GroupHelper
+
 
 class Application():
 
@@ -14,8 +13,6 @@ class Application():
             raise ValueError("Unrecognized browser %s" % browser)
         self.wd.implicitly_wait(5)
         self.session = SessionHelper(self)
-        self.user = UserHelper(self)
-        self.group = GroupHelper(self)
         self.baseUrl = baseUrl
 
     def is_valid(self):
