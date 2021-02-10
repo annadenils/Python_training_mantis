@@ -9,14 +9,15 @@ class SessionHelper:
         wd.find_element_by_name("username").click()
         wd.find_element_by_name("username").clear()
         wd.find_element_by_name("username").send_keys(login_name)
-        wd.find_element_by_name("password").click()
+        wd.find_element_by_xpath("//input[@value='Войти']").click()
         wd.find_element_by_name("password").clear()
         wd.find_element_by_name("password").send_keys(password)
-        wd.find_element_by_css_selector("input[type='submit']").click()
+        wd.find_element_by_xpath("//input[@value='Войти']").click()
 
     def logout(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("Logout").click()
+        wd.find_element_by_css_selector("span[class='user-info']").click()
+        wd.find_element_by_xpath("//a[contains(@href, '/mantisbt-2.24.4/logout_page.php')]").click()
         wd.find_element_by_name("username")
 
     def ensure_logout(self):
@@ -25,14 +26,14 @@ class SessionHelper:
 
     def is_logged_in(self):
         wd = self.app.wd
-        return len(wd.find_elements_by_link_text("Logout")) > 0
+        return len(wd.find_elements_by_xpath("(//a[contains(@href, '#')])[2]")) > 0
 
     def is_logged_in_as(self, login_name):
         return self.get_logged_user() == login_name
 
     def get_logged_user(self):
         wd = self.app.wd
-        return wd.find_element_by_css_selector("td.login-info-left span").text
+        return wd.find_element_by_css_selector("span.user-info").text
 
     def ensure_login(self, login_name, password):
         if self.is_logged_in():
